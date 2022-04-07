@@ -1,15 +1,27 @@
-# tweet_search_by_username
-This allows you to make a bar graph of the most recent tweets, not including retweets or replies, made by a specific user.
+# Tweet Search By Username
+## Description
+This is a very small program that allows you to make a bar graph of the most recent tweets, not including retweets or replies, made by a specific user. In order to use this you will need an authorization token to use the twitter api.
 
-# Table of Contents
-I made this project to get some introductory practice on using APIs and Plotly.
+## Languages/Tools Used
+- Python
+- Plotly
+- Twitter's API
 
-This is my first time making something like this so there is a lot of room for improvements with the program. For example, the bar graph can be made more readable. The color of the bars and the background can be changed, and a gradient could even be implemented to try to quickly show the general difference in amount of likes each tweet got. The text contained in the tweet can even be made to appear when hovering over the bar. A step beyond that could be having the entire tweet appear, but since this is a program that just generates a bar graph, I am not sure how the tweets would be embedded. Also, if the tweets were embedded, the next step would be allowing users to interact with those tweets, such as replying, liking, or retweeting. A minor thing to note is also that this program assumes the user is in EST, so a change could be made to adjust for other time zones.
+## Possible Improvements
+- Make an interface so it isn't all done on the command line.
+- Allow the user to choose what types of tweets to pull (tweets, quote tweets, retweets, replies) and what metric to look at (likes or retweets).
+- Improve readability of the graph (alter the colors, include a gradient).
+- Allow users to see the tweets the graph is made up of.
 
-Starting with twitter.py, this is what was already present from Twitter to handle authorization and the get request. To make sure this works I have to set a variable named BEARER_TOKEN with my authorization token before starting the program.
+## How to Use
+1. Open the command line.
+2. Start up the virtual environment and set your authentication/bearer token.
+3. Start the program which will then prompt you for the twitter handle and length of time for the search.
+4. The graph may not open automatically in which it should be in the same directory as the program.
 
-In the other file, I made sure to import what I would need to create the graph and the code that twitter supplied. I also import datetime and timedelta in order to allow the user to add time restrictions for the tweets.
+## The Files
+### twitter.py
+This is what was already present from Twitter to handle token authorization and the get request. You can set your bearer/authorization token here if you would rather not set it every time you want to run the program.
 
-I start by setting the url the request will use, and then building the query that will be used by asking for the parameters from the user. I set each part of the parameter to a variable as I go to make it easier for me to build the query dictionary and to remember where each variable will go in the query. The program will not work if the search range is past 7 days and I just picked 1 day as the minimum time length for the search so I make sure to have the user pick a number in that range. With how the request wanted the timeframe for the search set up, I decided to use datetime, split it up, and then put it back together how Twitter wanted it. The reason I add 5 hours is because the request works in UTC. This program assumes the user is in EST so it changes the time from EST to UTC.
-
-Once I have the info I need, I put it all together in the query dictionary and make the request. From there it prints the number of tweets made and then begins storing the info needed for the bar graph. I then make the configurations for the axes and title, and then generate the bar graph.
+### twitter_search_by_username.py
+The code in here should be pretty straightforward. If other options are desired, the options variable can altered to fit what you are searching for. If you would like to see what can be used to modify the query, there is a table [here](https://developer.twitter.com/en/docs/twitter-api/tweets/search/integrate/build-a-query) at the bottom. The furthest this search go back is 7 days so that is why the input is restricted from 1 to 7 days. You can open it to less than a day by modifying the if statement. The query wants the time in a specific way so datetime is used to change the users input into what the query needs. There is a print statement that is commented out in case you would like to see what else you can get from the search. There is also a print statement stating how many tweets were pulled to compare to how many bars there are on the graph(they should be the same). The very last part is setting up the bar graph. You can change the bar graph and if you are wondering how you can check Plotly's [Python API reference](https://plotly.com/python-api-reference/generated/plotly.graph_objects.Bar.html) or use [Plotly Express](https://plotly.com/python/bar-charts/).
