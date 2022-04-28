@@ -9,7 +9,7 @@ This is a very small program that allows you to make a bar graph of the most rec
 - Twitter's API
 
 ## Possible Improvements
-- Make an interface so it isn't all done on the command line.
+- ~~Make an interface so it isn't all done on the command line.~~
 - Allow the user to choose what types of tweets to pull (tweets, quote tweets, retweets, replies) and what metric to look at (likes or retweets).
 - Improve readability of the graph (alter the colors, include a gradient).
 - Allow users to see the tweets the graph is made up of.
